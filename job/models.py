@@ -1,5 +1,5 @@
 from django.db import models
-from category.models import category,JobType
+from category.models import Category,JobType
 from django.contrib.auth.models import User
 # Create your models here.
 class Skill(models.Model):
@@ -12,9 +12,9 @@ class JobDetails(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     company_name = models.CharField(max_length=100)
     work_type = models.ManyToManyField(JobType)
-    catagory = models.ManyToManyField(category)
+    catagory = models.ManyToManyField(Category)
     starting_date = models.CharField(max_length=100)
-    salary = models.DecimalField(max_digits=12)
+    salary = models.DecimalField(max_digits=12, decimal_places=2)
     experience = models.CharField(max_length=50)
     deadline = models.DateField()
     post_date = models.DateField(auto_now_add=True)
