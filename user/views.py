@@ -14,6 +14,7 @@ from django.db.models import Sum
 from decimal import Decimal
 # from django.utils.text import force_text
 from . import forms
+from django.views import View
 
 # Create your views here.
 def register(request):
@@ -59,7 +60,39 @@ def activate(request, uid64, token):
         return redirect('register')
     
 
+# login 
+def user_login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, request.POST)
+        if form.is_valid():
+            user_name = form.cleaned_data['username']
+            user_pass = form.cleaned_data['password']
+            user = authenticate(username=user_name, password=user_pass)
+            if user is not None:
+                login(request, user)
+                messages.success(request, 'Logged in successfully')
+                return redirect('home')
+        messages.warning(request, 'Login information incorrect')
+        return render(request, 'login.html', {'form': form, 'type': 'Login'})
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form, 'type': 'Login'})
 
+def user_logout(request):
+    logout(request)
+    return redirect('user_login')
 
+    
+class UserBankAccountUpdateView(View):
+    template_name = 'accounts/profile.html'
 
+    def get(self, request):
+        form =forms.UserUpdateForm(instance=request.user)
+        return render(request, self.template_name, {'form': form})
 
+    def post(self, request):
+        form = forms.UserUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # Redirect to the user's profile page
+        return render(request, self.template_name, {'form': form})
