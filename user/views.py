@@ -15,6 +15,9 @@ from decimal import Decimal
 # from django.utils.text import force_text
 from . import forms
 from django.views import View
+from django.shortcuts import render, redirect
+from .forms import ResumeForm
+from .models import Resume
 
 # Create your views here.
 def register(request):
@@ -54,7 +57,7 @@ def activate(request, uid64, token):
         user.is_active = True
         user.save()
         messages.success(request, 'Account successfully activated. You can now log in.')
-        return redirect('register')
+        return redirect('user_login')
     else:
         messages.error(request, 'Invalid activation link. Please try again or contact support.')
         return redirect('register')
@@ -80,11 +83,11 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    return redirect('user_login')
+    return redirect('home')
 
-    
-class UserBankAccountUpdateView(View):
-    template_name = 'accounts/profile.html'
+# profile update  
+class UserAccountUpdateView(View):
+    template_name = 'profile.html'
 
     def get(self, request):
         form =forms.UserUpdateForm(instance=request.user)
@@ -96,3 +99,38 @@ class UserBankAccountUpdateView(View):
             form.save()
             return redirect('profile')  # Redirect to the user's profile page
         return render(request, self.template_name, {'form': form})
+
+
+def create_or_edit_resume(request):
+    # Check if the user already has a resume
+    try:
+        resume = request.user.resume
+        editing = True
+    except Resume.DoesNotExist:
+        resume = None
+        editing = False
+    
+    if request.method == 'POST':
+        form = ResumeForm(request.POST, instance=resume)
+        if form.is_valid():
+            resume = form.save(commit=False)
+            resume.user = request.user
+            resume.save()
+            return redirect('profile')  # Redirect to a page showing resume details
+    else:
+        form = ResumeForm(instance=resume)
+    
+    return render(request, 'profile.html', {'form': form, 'editing': editing})
+
+
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        profile_form = forms.UserUpdateForm(request.POST, instance=request.user)
+        if profile_form.is_valid():
+            profile_form.save()
+            messages.success(request, 'Profile updated successfully')
+            return redirect('profile')
+    else:
+        profile_form = forms.UserUpdateForm(instance=request.user)
+    return render(request, 'edit_profile.html', {'form': profile_form})
