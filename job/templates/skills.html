@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class='container d-flex' style='margin-top:20px;'>
+    <div class="form-card col-md-6" style=" padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 50%; margin: auto;">
+        <form method="post" style="color: black; font-weight: bold;">
+            <h1 style="text-align: center; margin-bottom: 30px; font-weight: bold; color: black;"> Skills</h1>
+        
+            {% csrf_token %}
+        
+            {% if form.error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ errors }}
+                </div>
+            {% endif %}
+        
+            {{ form|crispy }}
+        
+        </form>
+    </div>
+</div>
+{% endblock %}

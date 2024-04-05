@@ -22,13 +22,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Signika:wght@400;600&display=swap">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'style.css'%}">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel='shortcut icon' type='x-icon' href="{% static 'logo.jpeg'%} ">
   </head>
+  
   <body>
     {% comment %} navbar {% endcomment %}
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">JobMaster</a>
+        <a class="navbar-brand" href='{%url 'home'%}'>JobMaster</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -43,7 +45,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href='{%url 'home'%}'>Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">About Us</a>
@@ -68,8 +70,9 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href='{%url 'profile'%}'>Profile</a></li>
-                <li><a class="dropdown-item" href="#">Job Post</a></li>
-                <li><a class="dropdown-item" href="#">Job List</a></li>
+                <li><a class="dropdown-item" href="{%url 'create_job'%}">Job Post</a></li>
+                <li><a class="dropdown-item" href="{%url 'skill'%}">Add Skills</a></li>
+                <li><a class="dropdown-item" href="">Job List</a></li>
                 <li><a class="dropdown-item" href="#">Applied job</a></li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
