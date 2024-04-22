@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .job-details-box {
+        border: 1px solid black; /* Adjust the border width as needed */
+        padding: 20px;
+    }
+</style>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="job-details-box p-4">
+                <h2>{{ job.title }}</h2>
+                <p><strong>Company:</strong> {{ job.company_name }}</p>
+                <p><strong>Starting Date:</strong> {{ job.starting_date }}</p>
+                <p><strong>Salary:</strong> ${{ job.salary }}</p>
+                <p><strong>Experience:</strong> {{ job.experience }}</p>
+                <p><strong>Deadline:</strong> {{ job.deadline }}</p>
+                <p><strong>Categories:</strong>
+                    {% for category in job.catagory.all %}
+                    <span class="badge badge-secondary">{{ category.name }}</span>
+                    {% endfor %}
+                </p>
+                <p><strong>Job Type:</strong>
+                    {% for job_type in job.work_type.all %}
+                    <span class="badge badge-secondary">{{ job_type.type }}</span>
+                    {% endfor %}
+                </p>
+                <p><strong>Applicants:</strong> {{ job.applicants }}</p>
+                <p><strong>About the Job:</strong> {{ job.job_about }}</p>
+                <p><strong>Skills Required:</strong>
+                    {% for skill in job.skills.all %}
+                    <span class="badge badge-success">{{ skill.name }}</span>
+                    {% endfor %}
+                </p>
+                <p><strong>Other Requirements:</strong> {{ job.other_req }}</p>
+                <p><strong>Vacancy:</strong> {{ job.vacancy }}</p>
+
+                <!-- Add more fields as needed -->
+
+                <!-- Details and Apply Buttons -->
+                <div class="job-buttons">
+                    <a class="btn btn-primary btn-details" href="{% url 'home'%}">Home</a>
+                    {% if user.is_authenticated %}
+                    <button class="btn btn-success btn-apply">Apply</button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

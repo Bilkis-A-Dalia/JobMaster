@@ -9,9 +9,6 @@ class SkillForm(forms.ModelForm):
             'name': 'Skill Name',
         }
 
-from django import forms
-from .models import JobDetails
-
 class JobDetailsForm(forms.ModelForm):
     class Meta:
         model = JobDetails

@@ -171,9 +171,27 @@ footer {
   transform: none;
 }
 
+/* ......................................................................... */
+
+.job-listings-scrollable {
+    max-height: 500px; /* Adjust the max height as needed */
+    overflow-y: auto;
+}
+
+.job-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.job-buttons {
+    margin-top: 10px;
+}
+
 /* Media Query for Small Screens */
 @media (max-width: 768px) {
   .navbar-nav .nav-link {
     margin-right: 0;
   }
 }
+

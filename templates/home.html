@@ -2,6 +2,64 @@
 {%load static%}
 {%block content%} 
 <main>
-    
+<div class="container">
+    <div class="row">
+        <!-- Left Sidebar with Categories and Job Types -->
+        <div class="col-md-3">
+            <div class="sidebar">
+                <h4>All Categories</h4>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Select Category
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="categoryDropdown">
+                        {% for category in categories %}
+                        <a class="dropdown-item" href="{% url 'category_wise_job' category.slug %}">{{ category.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <hr>
+                <h4>All Job Types</h4>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="jobTypeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Select Job Type
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="jobTypeDropdown">
+                        {% for job_type in job_types %}
+                        <a class="dropdown-item" href="{% url 'job_type_wise_job' job_type.slug %}">{{ job_type.type }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section with Scrollable Job Listings -->
+        <div class="col-md-9">
+            <div class="job-listings">
+                <h2>Job Listings</h2>
+                <div class="job-listings-scrollable">
+                    {% for job in jobs %}
+                    <div class="job-card">
+                        <h4>{{ job.title }}</h4>
+                        <p>{{ job.description }}</p>
+                        <p><strong>Company:</strong> {{ job.company_name }}</p>
+                        <p><strong>Starting Date:</strong> {{ job.starting_date }}</p>
+                        <!-- Add more job details as needed -->
+
+                        <!-- Details and Apply Buttons -->
+                        <div class="job-buttons">
+                            <a class="btn btn-primary btn-details" href='{% url 'job_details' job.id%}'>View Details</a>
+                            {% if user.is_authenticated %}
+                            <button class="btn btn-success btn-apply">Apply</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </main>
 {%endblock%}

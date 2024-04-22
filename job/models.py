@@ -25,4 +25,4 @@ class JobDetails(models.Model):
     vacancy = models.IntegerField()
 
     def __str__(self):
-        return self.title,self.company_name
+        return f"{self.title} - {self.company_name}"
