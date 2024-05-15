@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-5">About Us</h1>
+    <div id="aboutCarousel" class="carousel slide" data-bs-ride="carousel" style="background-color: #E1AFD1;">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="{% static 'image1.jpeg' %}" class="d-block w-75" alt="...">
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center">
+                        <div class="p-4" >
+                            <h3>Our Mission</h3>
+                            <p>We aim to provide the best job opportunities and career growth for all our users. Our platform connects job seekers with top companies, ensuring a perfect match for both parties.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="{% static 'image2.jpeg' %}" class="d-block w-75" alt="...">
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center">
+                        <div class="p-4">
+                            <h3>Our Vision</h3>
+                            <p>Our vision is to become the leading platform for job seekers and employers alike, fostering a dynamic and efficient job market.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="{% static 'image3.jpeg' %}" class="d-block w-75" alt="...">
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center">
+                        <div class="p-4" >
+                            <h3>Our Values</h3>
+                            <p>We believe in integrity, transparency, and dedication. These values drive us to provide exceptional service and support to our users.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#aboutCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+{% endblock %}

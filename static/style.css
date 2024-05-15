@@ -1,7 +1,7 @@
 /* Footer styles */
 .footer {
-  background-color: #343a40;
-  color: white;
+  background-color: #AD88C6;
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,7 +30,7 @@ body {
   /* font-family: 'Signika', sans-serif; */
   line-height: 1.6;
   color: #333;
-  background-color: #f8f9fa;
+  background-color: #FFE6E6;
   /* height: 100vh; */
   margin: 0;
   padding: 0;
@@ -188,10 +188,20 @@ footer {
     margin-top: 10px;
 }
 
+button{
+  color: #9e69b6;
+}
+
+.logo{
+  height: 50px;
+  width: 50px;
+}
 /* Media Query for Small Screens */
 @media (max-width: 768px) {
   .navbar-nav .nav-link {
     margin-right: 0;
   }
 }
+
+
 

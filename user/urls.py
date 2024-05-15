@@ -11,4 +11,7 @@ urlpatterns = [
     path('login/',views.user_login,name = 'user_login'),
     path('logout/',views.user_logout,name = 'user_logout'),
     path('active/<uid64>/<token>/', views.activate,name = 'activate'),
+    path('services/', views.services, name='services'),
+    path('about/', views.about, name='about'),
+    path('contact_us/', views.contactUs, name='contact_us'),
 ]

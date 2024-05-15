@@ -134,3 +134,15 @@ def edit_profile(request):
     else:
         profile_form = forms.UserUpdateForm(instance=request.user)
     return render(request, 'edit_profile.html', {'form': profile_form})
+
+# services
+def services(request):
+    return render(request, 'services.html')
+
+# about
+def about(request):
+    return render(request, 'about.html')
+
+# contact_us
+def contactUs(request):
+    return render(request, 'contact_form.html')

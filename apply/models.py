@@ -1,13 +1,21 @@
 from django.db import models
 from django.contrib.auth.models import User
 from job.models import JobDetails
-# Create your models here.
+
+def validate_file_extension(value):
+    import os
+    from django.core.exceptions import ValidationError
+    ext = os.path.splitext(value.name)[1]  # [0] returns path+filename
+    valid_extensions = ['.pdf', '.doc', '.docx']
+    if not ext.lower() in valid_extensions:
+        raise ValidationError('Unsupported file extension.')
 
 class Apply(models.Model):
-    applicants = models.ForeignKey(User,on_delete = models.CASCADE)
-    job = models.ForeignKey(JobDetails, on_delete = models.CASCADE)
-    resume = models.FileField(upload_to = 'apply/media/uploads/')
+    applicants = models.ForeignKey(User, on_delete=models.CASCADE)
+    job = models.ForeignKey(JobDetails, on_delete=models.CASCADE)
+    resume = models.FileField(upload_to='apply/media/uploads/', validators=[validate_file_extension])
     cover_letter = models.TextField()
     availability = models.BooleanField(default=True)
+
     def __str__(self):
-        return self.applicants,self.job.title
+        return f"{self.applicants} - {self.job.title}"

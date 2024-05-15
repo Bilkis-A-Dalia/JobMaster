@@ -12,7 +12,7 @@ class JobDetails(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     company_name = models.CharField(max_length=100)
     work_type = models.ManyToManyField(JobType)
-    catagory = models.ManyToManyField(Category)
+    category = models.ManyToManyField(Category)
     starting_date = models.CharField(max_length=100)
     salary = models.DecimalField(max_digits=12, decimal_places=2)
     experience = models.CharField(max_length=50)

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Contact Us</h1>
+    <p class="text-center">Have questions or inquiries? Reach out to us using the form below.</p>
+    <div class="row" style='background-color: #E1AFD1'>
+        <div class="col-md-6">
+            <img src="{% static 'form.jpeg' %}" class="img-fluid" alt="Contact Us Image">
+        </div>
+        <div class="col-md-6">
+            <form action="https://formspree.io/f/mqkrjwbr" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required placeholder="Enter your name">
+                </div>
+                <div class="mb-3">
+                    <label for="mobile" class="form-label">Mobile Number</label>
+                    <input type="tel" class="form-control" id="mobile" name="mobile" required placeholder="Enter your mobile number">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your email address">
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Enter your message"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary" style="background-color: #7469B6;">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

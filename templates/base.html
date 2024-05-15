@@ -23,14 +23,21 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'style.css'%}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel='shortcut icon' type='x-icon' href="{% static 'logo.jpeg'%} ">
-  </head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel='shortcut icon' type='x-icon' href="{% static 'logo.png'%} ">
+  </head> 
   
   <body>
     {% comment %} navbar {% endcomment %}
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #AD88C6;">
       <div class="container-fluid">
-        <a class="navbar-brand" href='{%url 'home'%}'>JobMaster</a>
+        <a class="navbar-brand" href='{% url 'home'%}'>
+    <div style="display: flex; align-items: center;">
+        <img src="{% static 'logo.png'%}" alt="" class="logo" style="width: 60px; height: 60px; margin-right: 10px;">
+        <h2>JobMaster</h2>
+    </div>
+</a>
+
         <button
           class="navbar-toggler"
           type="button"
@@ -48,13 +55,13 @@
               <a class="nav-link active" aria-current="page" href='{%url 'home'%}'>Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About Us</a>
+              <a class="nav-link" href="{% url 'about' %}">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="{%url 'services'%}">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="{%url 'contact_us'%}">Contact Us</a>
             </li>
             {%if request.user.is_authenticated%}
             <li class="nav-item dropdown">
@@ -119,40 +126,38 @@
 
     {% comment %} footer {% endcomment %}
     <footer>
-      <div class="footer mt-3">
-        <div class="company-name m-5"><h3>JobMaster</h3></div>
+      <div class="footer mt-3" style = 'background-color: #AD88C6; color: black'>
+        <div class="company-name m-5"><h3>JobMaster</h3>
+                <img src="{% static 'logo.png'%}" alt="" class="logo" style="width: 100px; height: 100px; margin-right: 10px;"></div>
         <div class="social-link m-5">
           <h3>Social Links</h3>
-          <a href="https://www.facebook.com">
-            <i class="bi bi-facebook"></i>
+          <a href="https://www.facebook.com" style="text-decoration: none; color: inherit;">
+            <i class="bi bi-facebook"> Facebook</i>
           </a>
-
-          <a href="https://wa.me/your_whatsapp_number">
-            <i class="bi bi-whatsapp"></i>
+          <br>
+          <a href="https://wa.me/your_whatsapp_number" style="text-decoration: none; color: inherit;">
+            <i class="bi bi-whatsapp"> What's App</i>
           </a>
-
-          <a href="https://www.instagram.com">
-            <i class="bi bi-instagram"></i>
+          <br>
+          <a href="https://www.instagram.com" style="text-decoration: none; color: inherit;">
+            <i class="bi bi-instagram"> Instagram</i>
           </a>
-
-          <a href="https://www.linkedin.com">
-            <i class="bi bi-linkedin"></i>
+          <br>
+          <a href="https://www.linkedin.com" style="text-decoration: none; color: inherit;">
+            <i class="bi bi-linkedin"> Linkedin</i>
           </a>
         </div>
         <div class="company m-5">
           <h3>Company</h3>
-          <li><a href="{%url 'home'%}">Home</a></li>
-          {% comment %}
-          <li><a href="{%url 'service'%}">Services</a></li>
-          {% endcomment %} {% comment %}
-          <li><a href="{%url 'contact-us'%}">About Us</a></li>
-          {% endcomment %} {% comment %}
-          <li><a href="{%url 'contact-us'%}">Company</a></li>
-          {% endcomment %}
+          <li><a href="{%url 'home'%}" style="text-decoration: none; color: inherit;">Home</a></li>
+          <li><a href="{%url 'services'%}" style="text-decoration: none; color: inherit;">Services</a></li>
+          <li><a href="{%url 'about'%}" style="text-decoration: none; color: inherit;">About Us</a></li>
+          <li><a href="{%url 'contact_us'%}" style="text-decoration: none; color: inherit;">Contact Us</a></li>
         </div>
       </div>
-      <div class="owner text-center">
-        <h4>© {% now "Y" %} Modified by Dalia</h4>
+      <div class="owner text-center" style = 'background-color: #AD88C6'>
+        <hr>
+        <h6>© {% now "Y" %} Modified by Dalia</h6>
       </div>
     </footer>
 
@@ -175,13 +180,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- Bootstrap JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var myModal = new bootstrap.Modal(document.getElementById('bookingModal'));

@@ -12,12 +12,12 @@ class SkillForm(forms.ModelForm):
 class JobDetailsForm(forms.ModelForm):
     class Meta:
         model = JobDetails
-        fields = ['title', 'company_name', 'work_type', 'catagory', 'starting_date', 'salary', 'experience', 'deadline', 'job_about', 'skills', 'other_req', 'vacancy']
+        fields = ['title', 'company_name', 'work_type', 'category', 'starting_date', 'salary', 'experience', 'deadline', 'job_about', 'skills', 'other_req', 'vacancy']
         labels = {
             'title': 'Job Title',
             'company_name': 'Company Name',
             'work_type': 'Work Type',
-            'catagory': 'Category',
+            'category': 'Category',
             'starting_date': 'Starting Date',
             'salary': 'Salary',
             'experience': 'Experience',

@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('user.urls')),
     path('job/', include('job.urls')),
+    path('apply/', include('apply.urls')),
     path('category_wise_job/<slug:category_slug>/', views.Home, name='category_wise_job'),
     path('job_type_wise_job/<slug:job_type_slug>/', views.Home, name='job_type_wise_job'),
 ]
