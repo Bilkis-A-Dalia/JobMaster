@@ -9,14 +9,13 @@
         <div class="col-md-12">
             <div class="form-card" style="padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  background-color: #E1AFD1">
                 <form method="post" style="color: black; font-weight: bold; font-size: 14px;">
-                    <h3 style="text-align: center; margin-bottom: 20px; font-weight: bold; color: black; font-size: 18px;">Edit profile</h3>
+                    <h3 style="text-align: center; margin-bottom: 20px; font-weight: bold; color: black; font-size: 18px;">Edit Job</h3>
                 
                     {% csrf_token %}
                 
                     {{ form|crispy }}
                 
                     <button type="submit" class="btn btn-warning mb-3" style="width: 100%; background-color: #7469B6; border-color: #ffc107; font-weight: bold; font-size: 16px; color:white">Update</button>
-                    <a class="btn btn-warning mb-3" style="width: 100%; font-weight: bold; font-size: 16px; background-color: #7469B6;" href='{% url 'profile'%}'><h5 style="margin: 0; color: white;">Edit Resume</h5></a>
                 </form>
             </div>
         </div>

@@ -15,7 +15,7 @@
                     {{ form|crispy }}
                 
                     <button type="submit" class="btn btn-warning mb-3" style="width: 100%;  border-color: #ffc107; font-weight: bold; font-size: 16px;  background-color: #7469B6;"><h5 style="margin: 0; color: white;">Update</h5></button>
-                    <button class="btn btn-warning mb-3" style="width: 100%; font-weight: bold; font-size: 16px; background-color: #7469B6;" onclick="location.href='{% url 'edit_profile' %}'"><h5 style="margin: 0; color: white;">Edit profile</h5></button>
+                    <a class="btn btn-warning mb-3" style="width: 100%; font-weight: bold; font-size: 16px; background-color: #7469B6;" href='{% url 'edit_profile'%}'><h5 style="margin: 0; color: white;">Edit profile</h5></a>
                 </form>
             </div>
         </div>

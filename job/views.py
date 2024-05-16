@@ -1,6 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404, redirect
 from .models import Skill,JobDetails
 from .import forms
+from django.contrib.auth.decorators import login_required
+from .forms import EditJobForm
 
 def SkillView(request):
     if request.method == 'POST': 
@@ -32,3 +34,30 @@ def create_or_edit_job(request, job_id=None):
 def job_detail(request, job_id):
     job = JobDetails.objects.get(pk=job_id)
     return render(request, 'job_details.html', {'job': job})
+
+@login_required
+def user_job_posts(request):
+    jobs = JobDetails.objects.filter(user=request.user)
+    return render(request, 'posted_job.html', {'jobs': jobs})
+
+@login_required
+def edit_job(request, job_id):
+    job = get_object_or_404(JobDetails, pk=job_id)
+    
+    if request.method == 'POST':
+        form = EditJobForm(request.POST, instance=job)
+        if form.is_valid():
+            form.save()
+            return redirect('job_details', job_id=job_id)
+    else:
+        form = EditJobForm(instance=job)
+    
+    return render(request, 'edit_jobs.html', {'form': form, 'job': job})
+
+@login_required
+def delete_job(request, job_id):
+    job = get_object_or_404(JobDetails, pk=job_id, user=request.user)
+    if request.method == 'POST':
+        job.delete()
+        return redirect('posted_job')
+    return redirect('posted_job')

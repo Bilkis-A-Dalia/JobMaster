@@ -42,7 +42,9 @@
                 <div class="job-buttons">
                     <a class="btn btn-primary btn-details" style='background-color: #7469B6;' href="{% url 'home'%}">Home</a>
                     {% if user.is_authenticated %}
-                    <button class="btn btn-success btn-apply">Apply</button>
+<button class="btn btn-success btn-apply" style="background-color: #28a745; border-color: #28a745;">
+    <a href="{% url 'apply' job.id %}" style="color: white; text-decoration: none;">Apply</a>
+</button>
                     {% endif %}
                 </div>
             </div>
