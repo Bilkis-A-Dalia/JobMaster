@@ -9,7 +9,7 @@
 <div class="container mt-3">
     <div class="row">
         <div class="col-md-12">
-            <div class="job-details-box p-4">
+            <div class="job-details-box p-4" style='background-color: #f6e7f1'>
                 <h2>{{ job.title }}</h2>
                 <p><strong>Company:</strong> {{ job.company_name }}</p>
                 <p><strong>Starting Date:</strong> {{ job.starting_date }}</p>
@@ -40,7 +40,7 @@
 
                 <!-- Details and Apply Buttons -->
                 <div class="job-buttons">
-                    <a class="btn btn-primary btn-details" href="{% url 'home'%}">Home</a>
+                    <a class="btn btn-primary btn-details" style='background-color: #7469B6;' href="{% url 'home'%}">Home</a>
                     {% if user.is_authenticated %}
                     <button class="btn btn-success btn-apply">Apply</button>
                     {% endif %}

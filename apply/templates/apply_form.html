@@ -4,16 +4,16 @@
 {% load static %}
 
 {% block content %}
-<div class='container d-flex' style='margin-top:20px;'>
-    <div class="form-card col-md-6" style=" padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 50%; margin: auto;">
-        <form method="post" style="color: black; font-weight: bold;">
-            <h1 style="text-align: center; margin-bottom: 30px; font-weight: bold; color: black;"> Job Post</h1>
+<div class="container d-flex" style="margin-top:20px;">
+    <div class="form-card col-md-6" style="padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 50%; margin: auto;">
+        <form method="post" enctype="multipart/form-data" style="color: black; font-weight: bold;">
+            <h1 style="text-align: center; margin-bottom: 30px; font-weight: bold; color: black;"> Job Apply</h1>
         
             {% csrf_token %}
         
-            {% if form.error %}
+            {% if form.errors %}
                 <div class="alert alert-danger" role="alert">
-                    {{ errors }}
+                    {{ form.errors }}
                 </div>
             {% endif %}
         
