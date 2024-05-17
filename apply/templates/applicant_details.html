@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    .applicant-details-box {
+        border: 1px solid black; /* Adjust the border width as needed */
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+</style>
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Applicants for {{ job.title }}</h1>
+    {% if applicants %}
+        <div class="row">
+            {% for applicant in applicants %}
+                <div class="col-md-12">
+                    <div class="applicant-details-box p-4" style="background-color: #f6e7f1;">
+                        <h3>{{ applicant.applicants.username }}</h3>
+                        <p><strong>Email:</strong> {{ applicant.applicants.email }}</p>
+                        <p><strong>Cover Letter:</strong> {{ applicant.cover_letter }}</p>
+                        <p><strong>Resume:</strong> <a href="{{ applicant.resume.url }}" target="_blank">Download</a></p>
+                        <p><strong>Availability:</strong> {{ applicant.availability|yesno:"Available,Not Available" }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center">No applicants have applied for this job yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

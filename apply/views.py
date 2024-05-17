@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import ApplyForm
 from job.models import JobDetails
 from django.http import HttpResponse
+from .models import Apply
 
 @login_required
 def apply_for_job(request, job_id):
@@ -29,3 +30,20 @@ def apply_for_job(request, job_id):
         form = ApplyForm()
     
     return render(request, 'apply_form.html', {'form': form, 'job': job})
+
+@login_required
+def my_applied_jobs(request):
+    applied_jobs = Apply.objects.filter(applicants=request.user)
+    return render(request, 'applied_jobs.html', {'applied_jobs': applied_jobs})
+
+@login_required
+def applicants_list(request, job_id):
+    job = get_object_or_404(JobDetails, pk=job_id)
+    applicants = Apply.objects.filter(job=job)
+    return render(request, 'applicants_list.html', {'job': job, 'applicants': applicants})
+
+@login_required
+def applicant_details(request, job_id):
+    job = get_object_or_404(JobDetails, pk=job_id)
+    applicants = Apply.objects.filter(job=job)
+    return render(request, 'applicant_details.html', {'job': job, 'applicants': applicants})
