@@ -20,7 +20,9 @@
                     <tr>
                         <td>{{ applicant.applicants.username }}</td>
                         <td>{{ applicant.applicants.email }}</td>
-                        <td>{{ applicant.cover_letter|truncatewords:10}} <a href="{%url 'applicant_details' job.id %}">More</a></td>
+                        <td>{{ applicant.cover_letter|truncatewords:10}} 
+                            <a href="{% url 'applicant_details' applicant.pk %}">More</a>
+                        </td>
                         <td><a href="{{ applicant.resume.url }}" target="_blank">Download</a></td>
                         <td>{{ applicant.availability|yesno:"Available,Not Available" }}</td>
                     </tr>

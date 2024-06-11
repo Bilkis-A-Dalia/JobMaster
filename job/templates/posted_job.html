@@ -8,18 +8,20 @@
         <div class="row">
             {% for job in jobs %}
                 <div class="col-md-4 mb-4">
-                    <div class="card" style="background-color: #E1AFD1;">
-                        <div class="card-body">
+                    <div class="card" style="background-color: #E1AFD1; height: 300px;">
+                        <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ job.title }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ job.company_name }}</h6>
-                            <p class="card-text">{{ job.job_about|truncatewords:20 }}</p>
-                            <a class="card-text" href="{% url 'applicants_list' job.pk %}"><strong>Applicants:</strong> {{ job.applicants }}</a><br><br>
-                            <a href="{% url 'job_details' job.pk %}" class="btn btn-primary mb-2" style="background-color: #7469B6; border-color: #7469B6;">View Details</a>
-                            <a href="{% url 'edit_job' job.pk %}" class="btn btn-secondary mb-2" style="background-color: #6c757d; border-color: #6c757d;">Edit</a>
-                            <form action="{% url 'delete_job' job.pk %}" method="post" style="display: inline;">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-danger mb-2">Delete</button>
-                            </form>
+                            <p class="card-text" style="flex-grow: 1; overflow: hidden; text-overflow: ellipsis;">{{ job.job_about|truncatewords:20 }}</p>
+                            <a class="card-text" href="{% url 'applicants_list' job.pk %}"><strong>Applicants:</strong> {{ job.applicants }}</a><br>
+                            <div class="mt-auto">
+                                <a href="{% url 'job_details' job.pk %}" class="btn btn-primary mb-2" style="background-color: #7469B6; border-color: #7469B6;">View Details</a>
+                                <a href="{% url 'edit_job' job.pk %}" class="btn btn-secondary mb-2" style="background-color: #6c757d; border-color: #6c757d;">Edit</a>
+                                <form action="{% url 'delete_job' job.pk %}" method="post" style="display: inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger mb-2">Delete</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

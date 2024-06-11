@@ -2,64 +2,134 @@
 {%load static%}
 {%block content%} 
 <main>
-<div class="container">
-    <div class="row">
-        <!-- Left Sidebar with Categories and Job Types -->
-        <div class="col-md-3">
-            <div class="sidebar">
-                <h4>All Categories</h4>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Select Category
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="categoryDropdown">
-                        {% for category in categories %}
+    <marquee behavior="scroll" direction="left" style="font-size: 20px; color: #7469B6; font-weight: bold; background-color: #E1AFD1; padding: 10px;">
+        Welcome to JobMaster - Simplifying Job Applications and Postings! Apply, Post, and Manage Jobs with Ease! Explore Opportunities with Top Companies, Find Your Perfect Job Match, and Grow Your Career! Whether You Are an Employer Seeking Talent or a Job Seeker Looking for New Challenges, JobMaster is Here to Connect You to Success! Join Us Today and Experience a Seamless Job Application Process Like Never Before!
+    </marquee>
+
+    <div class="mb-5" style="padding: 0px 100px;">
+        <div class="row">
+            <!-- Left Sidebar with Categories and Job Types -->
+            <div class="col-md-4">
+                
+    {%if request.user.is_authenticated%}
+    <div class='mb-5'>
+      <h1>Hi ! {{request.user.first_name}} {{request.user.last_name}}  &#x270B</h1>
+      <h5>Take the first step towards a brighter future and let us guide you along the way.</h5>
+    </div>
+    {%endif %}
+                <div class="sidebar">
+                    <h4>All Categories</h4>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Select Category
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="categoryDropdown">
+                             {% for category in categories %}
                         <a class="dropdown-item" href="{% url 'category_wise_job' category.slug %}">{{ category.name }}</a>
                         {% endfor %}
+                        </div>
                     </div>
-                </div>
-                <hr>
-                <h4>All Job Types</h4>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="jobTypeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Select Job Type
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="jobTypeDropdown">
-                        {% for job_type in job_types %}
-                        <a class="dropdown-item" href="{% url 'job_type_wise_job' job_type.slug %}">{{ job_type.type }}</a>
-                        {% endfor %}
+                    <hr>
+                    <h4>All Job Types</h4>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="jobTypeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Select Job Type
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="jobTypeDropdown">
+                            {% for job_type in job_types %}
+                            <a class="dropdown-item" href="{% url 'job_type_wise_job' job_type.slug %}">{{ job_type.type }}</a>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Right Section with Scrollable Job Listings -->
-        <div class="col-md-9">
-            <div class="job-listings">
-                <h2>Job Listings</h2>
-                <div class="job-listings-scrollable">
-                    {% for job in jobs %}
-                    <div class="job-card">
-                        <h4>{{ job.title }}</h4>
-                        <p>{{ job.description }}</p>
-                        <p><strong>Company:</strong> {{ job.company_name }}</p>
-                        <p><strong>Starting Date:</strong> {{ job.starting_date }}</p>
-                        <!-- Add more job details as needed -->
+            <!-- Right Section with Scrollable Job Listings -->
+            <div class="col-md-8">
+                <div class="job-listings">
+                <h3 class='text-center'>{{jobs| length}} jobs found</h3>
+                    <h2 >Job Listings</h2>
+                    <div class="job-listings-scrollable">
+                        {% for job in jobs %}
+                        <div class="job-card">
+                            <h4>{{ job.title }}</h4>
+                            <p>{{ job.description }}</p>
+                            <p><strong>Company:</strong> {{ job.company_name }}</p>
+                            <p><strong>Starting Date:</strong> {{ job.starting_date }}</p>
+                            <!-- Add more job details as needed -->
 
-                        <!-- Details and Apply Buttons -->
-                        <div class="job-buttons">
-                            <a class="btn btn-primary btn-details" href='{% url 'job_details' job.id%}'>View Details</a>
-                            {% if user.is_authenticated %}
-                            <a class="btn btn-success btn-apply" href="{% url 'apply' job.id %}">Apply</a>
-                            {% endif %}
+                            <!-- Details and Apply Buttons -->
+                            <div class="job-buttons">
+                                <a class="btn btn-primary btn-details" href="{% url 'job_details' job.id %}">View Details</a>
+                                {% if user.is_authenticated %}
+                                <a class="btn btn-success btn-apply" href="{% url 'apply' job.id %}">Apply</a>
+                                {% endif %}
+                            </div>
                         </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
-</div>
 
+    {% comment %} questions {% endcomment %}
+    <div style="padding: 0px 100px; background-color:#F2BFAE;">
+        <div class='text-center'>
+            <h1>Frequently Asked Questions</h1>
+        </div>
+        <div class="accordion accordion-flush mb-5" id="accordionFlushExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        How do I create an account on JobMaster?
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">To create an account on JobMaster, click on the "Sign Up" button on the homepage. Fill in your personal details, including your name, email address, and password. After submitting the form, you will receive a verification email. Click the link in the email to verify your account and start using JobMaster.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+        How can I apply for a job?
+      </button>
+    </h2>
+    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">To apply for a job on JobMaster, first, log in to your account. Browse the job listings and click on the job you are interested in. On the job details page, you will see an "Apply" button. Click the button, upload your resume and cover letter, and submit your application. You will receive a confirmation email once your application has been successfully submitted.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+        Can I edit my job application after submitting it?
+      </button>
+    </h2>
+    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Once you have submitted your job application, you cannot directly edit it. However, you can withdraw your application and reapply with updated information. To withdraw, go to your application history, find the specific job application, and click "Withdraw Application." Then, you can apply again with the updated resume and cover letter.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingFour">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseThree">
+        What should I do if I forgot my password?
+      </button>
+    </h2>
+    <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">If you forgot your password, click on the "Forgot Password" link on the login page. Enter your registered email address, and you will receive an email with instructions to reset your password. Follow the instructions to create a new password and regain access to your account.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingFive">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseThree">
+        How can I contact customer support for help?
+      </button>
+    </h2>
+    <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">If you need help or have any questions, you can contact JobMaster's customer support by clicking on the "Contact Us" link at the bottom of the homepage. Fill out the contact form with your name, email, and query. Alternatively, you can email support@jobmaster.com or call the customer support hotline provided on the website. Our support team is available to assist you with any issues or questions you may have.</div>
+    </div>
+  </div>
+</div>
+    </div>
 </main>
 {%endblock%}

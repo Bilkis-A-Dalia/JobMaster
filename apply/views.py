@@ -43,7 +43,6 @@ def applicants_list(request, job_id):
     return render(request, 'applicants_list.html', {'job': job, 'applicants': applicants})
 
 @login_required
-def applicant_details(request, job_id):
-    job = get_object_or_404(JobDetails, pk=job_id)
-    applicants = Apply.objects.filter(job=job)
-    return render(request, 'applicant_details.html', {'job': job, 'applicants': applicants})
+def applicant_details(request, apply_id):
+    applicant = get_object_or_404(Apply, pk=apply_id)
+    return render(request, 'applicant_details.html', {'applicant': applicant})

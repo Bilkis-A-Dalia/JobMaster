@@ -1,5 +1,5 @@
 from django import forms
-from .models import Skill,JobDetails
+from .models import Skill, JobDetails
 
 class SkillForm(forms.ModelForm):
     class Meta:
@@ -12,7 +12,20 @@ class SkillForm(forms.ModelForm):
 class JobDetailsForm(forms.ModelForm):
     class Meta:
         model = JobDetails
-        fields = ['title', 'company_name', 'work_type', 'category', 'starting_date', 'salary', 'experience', 'deadline', 'job_about', 'skills', 'other_req', 'vacancy']
+        fields = [
+            'title', 
+            'company_name', 
+            'work_type', 
+            'category', 
+            'starting_date', 
+            'salary', 
+            'experience', 
+            'deadline', 
+            'job_about', 
+            'skills', 
+            'other_req', 
+            'vacancy'
+        ]
         labels = {
             'title': 'Job Title',
             'company_name': 'Company Name',
@@ -32,9 +45,10 @@ class JobDetailsForm(forms.ModelForm):
             'deadline': forms.DateInput(attrs={'type': 'date'}),
             'job_about': forms.Textarea(attrs={'rows': 2}),
             'other_req': forms.Textarea(attrs={'rows': 2}),
+            'work_type': forms.CheckboxSelectMultiple(attrs={'class': 'form-control'}),
+            'category': forms.CheckboxSelectMultiple(attrs={'class': 'form-control'}),
+            'skills': forms.CheckboxSelectMultiple(attrs={'class': 'form-control'}),
         }
-
-
 
 class EditJobForm(forms.ModelForm):
     class Meta:
@@ -67,4 +81,3 @@ class EditJobForm(forms.ModelForm):
             'other_req': forms.Textarea(attrs={'class': 'form-control'}),
             'vacancy': forms.NumberInput(attrs={'class': 'form-control'}),
         }
-

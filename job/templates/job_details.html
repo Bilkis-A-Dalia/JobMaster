@@ -17,7 +17,7 @@
                 <p><strong>Experience:</strong> {{ job.experience }}</p>
                 <p><strong>Deadline:</strong> {{ job.deadline }}</p>
                 <p><strong>Categories:</strong>
-                    {% for category in job.catagory.all %}
+                    {% for category in job.category.all %}
                     <span class="badge badge-secondary">{{ category.name }}</span>
                     {% endfor %}
                 </p>

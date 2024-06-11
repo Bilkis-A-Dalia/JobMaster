@@ -115,14 +115,8 @@
       </div>
     </nav>
 
-    {%if request.user.is_authenticated%}
-    <div>
-      <h2>{{request.user.first_name}}</h2>
-    </div>
-    {%endif %}
-
-    {% comment %} block content {% endcomment %} 
-    {%block content%} {%endblock%}
+    {%block content%} 
+    {%endblock%}
     
 
     {% comment %} footer {% endcomment %}

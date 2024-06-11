@@ -2,13 +2,38 @@
 {% load static %}
 
 {% block content %}
+<style>
+    .card {
+        background-color: #E1AFD1;
+        height: 100%; /* Ensures all cards have the same height */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%; /* Ensures card content takes up full height */
+    }
+
+    .card-body h5, .card-body h6, .card-body p {
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        margin-top: auto; /* Pushes the button to the bottom */
+    }
+</style>
+
 <div class="container mt-5">
     <h1 class="text-center mb-5">My Applied Jobs</h1>
     {% if applied_jobs %}
         <div class="row">
             {% for application in applied_jobs %}
                 <div class="col-md-4 mb-4">
-                    <div class="card" style="background-color: #E1AFD1;">
+                    <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">{{ application.job.title }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ application.job.company_name }}</h6>

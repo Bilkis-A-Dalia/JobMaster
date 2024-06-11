@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect,get_object_or_404, redirect
 from .models import Skill,JobDetails
 from .import forms
 from django.contrib.auth.decorators import login_required
-from .forms import EditJobForm
+from .forms import EditJobForm,JobDetailsForm
 
 def SkillView(request):
     if request.method == 'POST': 
@@ -16,18 +16,19 @@ def SkillView(request):
 
 def create_or_edit_job(request, job_id=None):
     if job_id:
-        job = JobDetails.objects.get(pk=job_id)
-        form = forms.JobDetailsForm(request.POST or None, instance=job)
+        job = get_object_or_404(JobDetails, pk=job_id)
+        form = JobDetailsForm(request.POST or None, instance=job)
     else:
         job = None
-        form = forms.JobDetailsForm(request.POST or None)
+        form = JobDetailsForm(request.POST or None)
 
     if request.method == 'POST':
         if form.is_valid():
             job = form.save(commit=False)
-            job.user = request.user 
+            job.user = request.user  # Assuming the user is logged in
             job.save()
-            return redirect('home') 
+            form.save_m2m()  # Save many-to-many relationships
+            return redirect('home')  # Redirect to home or any other page after saving
 
     return render(request, 'job_post.html', {'form': form, 'job': job})
 
