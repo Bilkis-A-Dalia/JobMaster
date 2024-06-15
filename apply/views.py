@@ -4,6 +4,7 @@ from .forms import ApplyForm
 from job.models import JobDetails
 from django.http import HttpResponse
 from .models import Apply
+from django.contrib import messages
 
 @login_required
 def apply_for_job(request, job_id):
@@ -46,3 +47,12 @@ def applicants_list(request, job_id):
 def applicant_details(request, apply_id):
     applicant = get_object_or_404(Apply, pk=apply_id)
     return render(request, 'applicant_details.html', {'applicant': applicant})
+
+@login_required
+def delete_applicant(request, apply_id):
+    applicant = get_object_or_404(Apply, pk=apply_id)
+    if request.method == 'POST':
+        applicant.delete()
+        messages.success(request, 'Applicant has been deleted successfully.')
+        return redirect('applied_jobs')  # Redirect to the list of applicants or another appropriate page
+    return redirect('applied_jobs')

@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-5">
+<main>
+    <div class="container mt-5">
     <h1 class="text-center mb-5">Applicants for {{ job.title }}</h1>
     {% if applicants %}
         <table class="table table-bordered table-striped" style="background-color: #E1AFD1;">
@@ -13,6 +14,7 @@
                     <th>Cover Letter</th>
                     <th>Resume</th>
                     <th>Availability</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +27,14 @@
                         </td>
                         <td><a href="{{ applicant.resume.url }}" target="_blank">Download</a></td>
                         <td>{{ applicant.availability|yesno:"Available,Not Available" }}</td>
+                        <!-- Your HTML template, e.g., applicant_details.html -->
+<td>
+    <form action="{% url 'delete_applicant' applicant.pk %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+</td>
+
                     </tr>
                 {% endfor %}
             </tbody>
@@ -33,4 +43,5 @@
         <p class="text-center">No applicants have applied for this job yet.</p>
     {% endif %}
 </div>
+</main>
 {% endblock %}

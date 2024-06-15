@@ -9,10 +9,11 @@
     <div class="mb-5" style="padding: 0px 100px;">
         <div class="row">
             <!-- Left Sidebar with Categories and Job Types -->
-            <div class="col-md-4">
+            <div class="col-md-4" >
                 
     {%if request.user.is_authenticated%}
     <div class='mb-5'>
+      <img src="{{user.profile_picture.url}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
       <h1>Hi ! {{request.user.first_name}} {{request.user.last_name}}  &#x270B</h1>
       <h5>Take the first step towards a brighter future and let us guide you along the way.</h5>
     </div>
@@ -42,6 +43,7 @@
                         </div>
                     </div>
                 </div>
+                <img src="{%static 'front_pic.png'%}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
             </div>
 
             <!-- Right Section with Scrollable Job Listings -->
@@ -51,7 +53,7 @@
                     <h2 >Job Listings</h2>
                     <div class="job-listings-scrollable">
                         {% for job in jobs %}
-                        <div class="job-card">
+                        <div class="job-card" style='background-color: #E1AFD1'>
                             <h4>{{ job.title }}</h4>
                             <p>{{ job.description }}</p>
                             <p><strong>Company:</strong> {{ job.company_name }}</p>
@@ -72,6 +74,100 @@
             </div>
         </div>
     </div>
+
+{% comment %} carosel     {% endcomment %}
+<div style='margin: 0px 150px 0px 150px'>
+  <h1 class='text-center'>Explore Yourself</h1>
+  <div class="swiffy-slider slider-item-show2 slider-item-reveal slider-nav-outside slider-nav-round slider-nav-visible slider-indicators-outside slider-indicators-round slider-indicators-dark slider-nav-animation slider-nav-animation-fadein slider-item-first-visible">
+    <ul class="slider-container py-4">
+        <li class="slide-visible">
+            <div class="card shadow h-100">
+                <div class="ratio ratio-16x9">
+                    <img src="{% static 'W3_scl.jpg' %}" class="card-img-top" loading="lazy" alt="...">
+                </div>
+                <div class="card-body p-3 p-xl-5">
+                    <h3 class="card-title h5">HTML</h3>
+                    <p class="card-text">HTML is the standard markup language for Web pages.With HTML you can create your own Website.
+                      HTML is easy to learn - You will enjoy it!.</p>
+                    <div><a href="https://www.w3schools.com/html/default.asp" class="btn btn-primary">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="slide-visible">
+            <div class="card shadow h-100">
+                <div class="ratio ratio-16x9">
+                    <img src="{% static 'python.png' %}" class="card-img-top" loading="lazy" alt="...">
+                </div>
+                <div class="card-body p-3 p-xl-5">
+                    <h3 class="card-title h5">Python</h3>
+                    <p class="card-text">Whether you're new to programming or an experienced developer, it's easy to learn and use Python.</p>
+                    <a href="https://www.python.org/" class="btn btn-primary">Explore</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="card shadow h-100">
+                <div class="ratio ratio-16x9">
+                    <img src="{%static 'Django-blog-banner.png'%}" class="card-img-top" loading="lazy" alt="...">
+                </div>
+                <div class="card-body p-3 p-xl-5">
+                    <h3 class="card-title h5">Django</h3>
+                    <p class="card-text">Django makes it easier to build better web apps more quickly and with less code..</p>
+                    <a href="https://www.djangoproject.com/" class="btn btn-primary">Explore</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="card shadow h-100">
+                <div class="ratio ratio-16x9">
+                    <img src="{%static 'css.jpg'%}" class="card-img-top" loading="lazy" alt="...">
+                </div>
+                <div class="card-body  p-3 p-xl-5">
+                    <h3 class="card-title h5">CSS</h3>
+                    <p class="card-text">An evergreen CSS course and reference to level up your web styling expertise.</p>
+                    <a href="https://web.dev/learn/css" class="btn btn-primary">Explore</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="card shadow h-100">
+                <div class="ratio ratio-16x9">
+                    <img src="{%static 'database.avif'%}" class="card-img-top" loading="lazy" alt="...">
+                </div>
+                <div class="card-body  p-3 p-xl-5">
+                    <h3 class="card-title h5">Database</h3>
+                    <p class="card-text">From massive online stores to social media giants, databases rule the digital world. Learn them and open doors to exciting careers.</p>
+                    <a href="https://www.javatpoint.com/what-is-database" class="btn btn-primary">Explore</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="card shadow h-100">
+                <div class="ratio ratio-16x9">
+                    <img src="{%static 'js.png'%}" class="card-img-top" loading="lazy" alt="...">
+                </div>
+                <div class="card-body  p-3 p-xl-5">
+                    <h3 class="card-title h5">Javasript</h3>
+                    <p class="card-text">JavaScript is an essential programming language for web developers to learn as it grows rapidly.</p>
+                    <a href="https://www.geeksforgeeks.org/javascript/" class="btn btn-primary">Explore</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <button type="button" class="slider-nav" aria-label="Go left"></button>
+    <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+
+    <div class="slider-indicators">
+        <button class="active" aria-label="Go to slide"></button>
+        <button aria-label="Go to slide"></button>
+        <button aria-label="Go to slide"></button>
+        <button aria-label="Go to slide"></button>
+        <button aria-label="Go to slide"></button>
+    </div>
+</div>
+</div>
 
     {% comment %} questions {% endcomment %}
     <div style="padding: 0px 100px; background-color:#F2BFAE;">
