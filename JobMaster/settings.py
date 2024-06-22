@@ -29,7 +29,8 @@ SECRET_KEY = 'django-insecure-t8!p*6(#nx2!w_u0hbl)5)!f$d!kvgw7_2b@l39ez!p+-smw8b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://jobmaster-8u2u.onrender.com','https://*.127.0.0.1']
 
 
 # Application definition
