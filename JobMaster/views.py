@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from job.models import JobDetails
 from category.models import Category, JobType
+from user.forms import ReviewForm
+from user.models import Review
 
 def Home(request, category_slug=None, job_type_slug=None):
     jobs = JobDetails.objects.all()
@@ -23,9 +25,24 @@ def Home(request, category_slug=None, job_type_slug=None):
     categories = Category.objects.all()
     job_types = JobType.objects.all()
 
+    review = Review.objects.all()
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.reviewer = request.user
+            review.email = request.user.email
+            review.save()
+            return redirect('home')  # Adjust this redirect as needed
+    else:
+        form = ReviewForm()
+
     return render(request, 'home.html', {
         'jobs': jobs,
         'categories': categories,
         'job_types': job_types,
-        'search_query': query  
+        'search_query': query,
+        'form': form,
+        'review': review,
     })

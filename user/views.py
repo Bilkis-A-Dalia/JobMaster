@@ -16,7 +16,7 @@ from decimal import Decimal
 from . import forms
 from django.views import View
 from django.shortcuts import render, redirect
-from .forms import ResumeForm
+from .forms import ResumeForm,ReviewForm
 from .models import Resume
 
 # Create your views here.
@@ -146,3 +146,4 @@ def about(request):
 # contact_us
 def contactUs(request):
     return render(request, 'contact_form.html')
+

@@ -22,3 +22,21 @@ class Resume(models.Model):
 
     def __str__(self):
         return f"Resume of {self.user.username}"
+    
+# review model
+STAR_CHOICES = [
+    (1, '★'),
+    (2, '★★'),
+    (3, '★★★'),
+    (4, '★★★★'),
+    (5, '★★★★★'),
+]
+class Review(models.Model):
+    reviewer = models.ForeignKey(User, on_delete = models.CASCADE)
+    email = models.EmailField(max_length=254)
+    rating = models.IntegerField(choices=STAR_CHOICES)
+    text = models.CharField(max_length=50)
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Review by {self.reviewer.first_name} - {self.rating}'

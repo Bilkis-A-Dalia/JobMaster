@@ -1,5 +1,6 @@
 {% extends 'base.html' %} 
 {%load static%}
+{% load crispy_forms_tags %}
 {%block content%} 
 <main>
     <marquee behavior="scroll" direction="left" style="font-size: 20px; color: #7469B6; font-weight: bold; background-color: #E1AFD1; padding: 10px;">
@@ -169,12 +170,60 @@
 </div>
 </div>
 
+{% comment %} review {% endcomment %}
+<div class='container'>
+    <h1 class='text-center'>Review</h1>
+    <div class="swiffy-slider slider-item-show2 slider-nav-sm slider-nav-page slider-item-snapstart slider-item-nogap slider-nav-round slider-nav-dark slider-indicators-sm slider-indicators-outside slider-indicators-round slider-indicators-dark slider-nav-animation slider-nav-animation-slideup slider-item-first-visible">
+    <div class="slider-container">
+        {% for review in review %}
+        <div class="p-3 p-xl-5 text-light slide-visible" style="background-color: #52796f;">
+            <h3 class="text-uppercase h5">Name: {{ review.reviewer }}</h3>
+            <p>Email: {{ review.email }}</p>
+            <p>Rating: {{ review.rating }}</p>
+            <p>Comment: {{ review.text }}</p>
+            <p>Date: {{ review.date }}</p>
+
+        </div>
+        {% endfor %}
+    </div>
+
+    <button type="button" class="slider-nav" aria-label="Go left"></button>
+    <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+
+    <div class="slider-indicators d-md-none">
+        {% for _ in review %}
+        <button {% if forloop.first %}class="active" {% endif %} aria-label="Go to slide"></button>
+        {% endfor %}
+    </div>
+</div>
+</div>
+
+{%if request.user.is_authenticated%}
+<div style='margin-top:20px;margin-bottom:20px;'>
+    <h1 class='text-center'>Drop your review</h1>
+    <div class="form-card col-md-12" style=" padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 50%; margin: auto; background-color: #E1AFD1">
+        <form method="post" style="color: black; font-weight: bold;">
+        
+            {% csrf_token %}
+        
+            {% if form.error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ errors }}
+                </div>
+            {% endif %}        
+            {{ form|crispy }}        
+            <button type="submit" class="btn btn-warning mb-4" style="width: 100%; background-color: #7469B6; border-color: #ffc107; font-weight: bold; color: white">Submit</button>
+        </form>
+    </div>
+</div>
+{%endif%}
+
     {% comment %} questions {% endcomment %}
-    <div style="padding: 0px 100px; background-color:#F2BFAE;">
+    <div style="padding: 0px 100px; background-color:#E1AFD1;">
         <div class='text-center'>
             <h1>Frequently Asked Questions</h1>
         </div>
-        <div class="accordion accordion-flush mb-5" id="accordionFlushExample">
+        <div class="accordion accordion-flush" id="accordionFlushExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingOne">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">

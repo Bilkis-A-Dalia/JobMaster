@@ -1,8 +1,9 @@
 from django import forms
 from django.contrib.auth.models import User
 from .constants import GENDER_TYPE
+from user.models import STAR_CHOICES
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
-from .models import UserAccount,Resume
+from .models import UserAccount,Resume,Review
 
 
 class RegistrationForm(UserCreationForm):
@@ -80,4 +81,18 @@ class ResumeForm(forms.ModelForm):
             'trainings_courses': forms.Textarea(attrs={'rows': 2}),
             'portfolio_link': forms.URLInput(attrs={'placeholder': 'https://example.com'}),
             'projects': forms.Textarea(attrs={'rows': 4}),
+        }
+
+# review forms
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['rating', 'text']
+        widgets = {
+            'rating': forms.Select(choices=STAR_CHOICES, attrs={'class': 'form-control'}),
+            'text': forms.Textarea(attrs={'class': 'form-control'}),
+        }
+        labels = {
+            'rating': 'Rating',
+            'text': 'Review Text',
         }
