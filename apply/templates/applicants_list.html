@@ -27,7 +27,6 @@
                         </td>
                         <td><a href="{{ applicant.resume.url }}" target="_blank">Download</a></td>
                         <td>{{ applicant.availability|yesno:"Available,Not Available" }}</td>
-                        <!-- Your HTML template, e.g., applicant_details.html -->
 <td>
     <form action="{% url 'delete_applicant' applicant.pk %}" method="post" style="display:inline;">
         {% csrf_token %}

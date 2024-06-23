@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from .constants import GENDER_TYPE
 from user.models import STAR_CHOICES
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
+from django.contrib.auth.forms import PasswordResetForm
 from .models import UserAccount,Resume,Review
 
 
@@ -96,3 +97,7 @@ class ReviewForm(forms.ModelForm):
             'rating': 'Rating',
             'text': 'Review Text',
         }
+
+# pass_change
+class CustomPasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(max_length=254, widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email'}))

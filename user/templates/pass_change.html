@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class='container mb-5' style='margin-top: 20px;'>
+     <div class="form-card col-md-12" style=" padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 50%; margin: auto; background-color: #E1AFD1">
+        <form method="post" style="color: black; font-weight: bold;">
+            <h1 style="text-align: center; margin-bottom: 30px; font-weight: bold; color: black;"> Change password </h1>        
+            {% csrf_token %}       
+            {% if form.error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ errors }}
+                </div>
+            {% endif %}        
+            {{ form|crispy }}        
+            <button type="submit" class="btn btn-warning mb-4" style="width: 100%; background-color: #7469B6; border-color: #ffc107; font-weight: bold; color: white">Update</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -9,8 +9,6 @@ from django.contrib import messages
 @login_required
 def apply_for_job(request, job_id):
     job = get_object_or_404(JobDetails, pk=job_id)
-    
-    # Check if the logged-in user is the one who posted the job
     if job.user == request.user:
         return HttpResponse("You cannot apply for your own posted job.", status=403)
     
@@ -22,7 +20,6 @@ def apply_for_job(request, job_id):
             application.job = job
             application.save()
             
-            # Increment the applicant count
             job.applicants += 1
             job.save()
 
@@ -54,5 +51,5 @@ def delete_applicant(request, apply_id):
     if request.method == 'POST':
         applicant.delete()
         messages.success(request, 'Applicant has been deleted successfully.')
-        return redirect('applied_jobs')  # Redirect to the list of applicants or another appropriate page
+        return redirect('applied_jobs')
     return redirect('applied_jobs')

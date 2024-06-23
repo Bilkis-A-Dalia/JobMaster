@@ -31,4 +31,5 @@ urlpatterns = [
     path('job_type_wise_job/<slug:job_type_slug>/', views.Home, name='job_type_wise_job'),
 ]
 
+# url of media file
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

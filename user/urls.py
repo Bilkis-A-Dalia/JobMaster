@@ -14,4 +14,7 @@ urlpatterns = [
     path('services/', views.services, name='services'),
     path('about/', views.about, name='about'),
     path('contact_us/', views.contactUs, name='contact_us'),
+    path('change_password/', views.pass_change, name='change_password'),
+   path('forget_password/', views.reset_password, name='forget_password'),
+   path('passchange/<uid64>/<token>',views.pass_change2,name='passchange'),
 ]

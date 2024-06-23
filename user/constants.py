@@ -3,3 +3,5 @@ GENDER_TYPE = (
     ('Female', 'Female'),
 )
 
+# 1-Value
+# 2-frontend key

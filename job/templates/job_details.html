@@ -37,9 +37,7 @@
                 <p><strong>Other Requirements:</strong> {{ job.other_req }}</p>
                 <p><strong>Vacancy:</strong> {{ job.vacancy }}</p>
 
-                <!-- Add more fields as needed -->
 
-                <!-- Details and Apply Buttons -->
                 <div class="job-buttons">
                     <a class="btn btn-primary btn-details" style='background-color: #7469B6;' href="{% url 'home'%}">Home</a>
                     {% if user.is_authenticated %}
